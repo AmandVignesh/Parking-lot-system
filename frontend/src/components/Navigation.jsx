@@ -1,24 +1,42 @@
-// Navigation component
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.css';
 
 const Navigation = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <h1>🅿️ Parking Lot System</h1>
+        <div className={styles.logoContainer}>
+          <div className={styles.logoIcon}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="8" fill="url(#paint0_linear)"/>
+              <path d="M7 6H13.5C16.5376 6 19 8.46243 19 11.5C19 14.5376 16.5376 17 13.5 17H11V20H7V6ZM11 10V13H13.5C14.3284 13 15 12.3284 15 11.5C15 10.6716 14.3284 10 13.5 10H11Z" fill="#0D0F16"/>
+              <defs>
+                <linearGradient id="paint0_linear" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#6EE7B7" />
+                  <stop offset="0.5" stopColor="#3B82F6" />
+                  <stop offset="1" stopColor="#9333EA" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h1>Park<span>X</span></h1>
         </div>
         <ul className={styles.navLinks}>
           <li>
-            <Link to="/">Dashboard</Link>
+            <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ''}>
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <Link to="/park">Park Vehicle</Link>
+            <NavLink to="/park" className={({ isActive }) => isActive ? styles.active : ''}>
+              Park Vehicle
+            </NavLink>
           </li>
           <li>
-            <Link to="/exit">Exit Vehicle</Link>
+            <NavLink to="/exit" className={({ isActive }) => isActive ? styles.active : ''}>
+              Exit Vehicle
+            </NavLink>
           </li>
         </ul>
       </div>

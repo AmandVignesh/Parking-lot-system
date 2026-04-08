@@ -1,4 +1,3 @@
-// Park Vehicle page
 import React, { useState } from 'react';
 import { parkVehicle } from '../services/api';
 import Alert from '../components/Alert.jsx';
@@ -25,7 +24,6 @@ const ParkVehicle = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate inputs
     if (!formData.vehicleNumber.trim()) {
       setAlert({ type: 'error', message: 'Please enter vehicle number' });
       return;
@@ -54,9 +52,17 @@ const ParkVehicle = () => {
 
   return (
     <div className={styles.parkVehicle}>
+      <div className={styles.pageHeader}>
+        <span className={styles.subtitle}>— NEW ENTRY</span>
+        <h1 className={styles.title}>Park Your <span className={styles.highlight}>Vehicle</span></h1>
+      </div>
+
       <div className={styles.container}>
         <div className={styles.formCard}>
-          <h2>🚗 Park Your Vehicle</h2>
+          <div className={styles.cardHeader}>
+            <h2>🏎️ Register Entry</h2>
+            <p>Fill in the details below to allocate a parking slot</p>
+          </div>
 
           {alert && (
             <Alert
@@ -66,26 +72,26 @@ const ParkVehicle = () => {
             />
           )}
 
-          {ticketData && (
+          {ticketData ? (
             <div className={styles.ticketCard}>
               <h3>✅ Vehicle Parked Successfully!</h3>
               <div className={styles.ticketInfo}>
                 <div className={styles.ticketItem}>
-                  <span className={styles.label}>Ticket ID:</span>
+                  <span className={styles.label}>Ticket ID</span>
                   <span className={styles.value}>{ticketData.ticketId}</span>
                 </div>
                 <div className={styles.ticketItem}>
-                  <span className={styles.label}>Vehicle:</span>
+                  <span className={styles.label}>Vehicle</span>
                   <span className={styles.value}>
                     {ticketData.vehicleNumber} ({ticketData.vehicleType})
                   </span>
                 </div>
                 <div className={styles.ticketItem}>
-                  <span className={styles.label}>Slot Number:</span>
+                  <span className={styles.label}>Slot Number</span>
                   <span className={styles.value}>{ticketData.slotNumber}</span>
                 </div>
                 <div className={styles.ticketItem}>
-                  <span className={styles.label}>Entry Time:</span>
+                  <span className={styles.label}>Entry Time</span>
                   <span className={styles.value}>
                     {new Date(ticketData.entryTime).toLocaleString()}
                   </span>
@@ -93,18 +99,16 @@ const ParkVehicle = () => {
               </div>
               <p className={styles.note}>Please save your ticket ID for exit</p>
               <button
-                className={styles.newParkBtn}
+                className={styles.submitBtn}
                 onClick={() => setTicketData(null)}
               >
-                Park Another Vehicle
+                Park Another Vehicle →
               </button>
             </div>
-          )}
-
-          {!ticketData && (
+          ) : (
             <form onSubmit={handleSubmit}>
               <div className={styles.formGroup}>
-                <label htmlFor="vehicleNumber">Vehicle Number *</label>
+                <label htmlFor="vehicleNumber">VEHICLE NUMBER *</label>
                 <input
                   type="text"
                   id="vehicleNumber"
@@ -117,7 +121,7 @@ const ParkVehicle = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="vehicleType">Vehicle Type *</label>
+                <label htmlFor="vehicleType">VEHICLE TYPE *</label>
                 <select
                   id="vehicleType"
                   name="vehicleType"
@@ -141,27 +145,44 @@ const ParkVehicle = () => {
                     <span className="spinner"></span> Parking...
                   </>
                 ) : (
-                  'Park Vehicle'
+                  'Park Vehicle →'
                 )}
               </button>
             </form>
           )}
         </div>
 
-        <div className={styles.infoCard}>
-          <h3>ℹ️ Guidelines</h3>
-          <ul>
-            <li>Enter your complete vehicle number</li>
-            <li>Select the correct vehicle type</li>
-            <li>Save your ticket ID for exit</li>
-            <li>Parking slots available:
-              <ul>
-                <li>Bikes: 5 slots</li>
-                <li>Cars: 5 slots</li>
-                <li>Trucks: 2 slots</li>
-              </ul>
-            </li>
-          </ul>
+        <div className={styles.rightColumn}>
+          <div className={styles.infoCard}>
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>i</div>
+              <h3>Guidelines</h3>
+            </div>
+            <ul>
+              <li>Enter your complete vehicle registration number</li>
+              <li>Select the correct vehicle type for proper slot allocation</li>
+              <li>Save your Ticket ID — required at exit</li>
+              <li>Slot assignment is automatic based on availability</li>
+            </ul>
+          </div>
+
+          <div className={styles.slotsCard}>
+            <h3 className={styles.slotsTitle}>AVAILABLE SLOTS</h3>
+            <div className={styles.slotsGrid}>
+              <div className={styles.slotItem}>
+                <span className={styles.slotCount}>5</span>
+                <span className={styles.slotType}>Bikes</span>
+              </div>
+              <div className={styles.slotItem}>
+                <span className={styles.slotCount}>5</span>
+                <span className={styles.slotType}>Cars</span>
+              </div>
+              <div className={styles.slotItem}>
+                <span className={styles.slotCount}>2</span>
+                <span className={styles.slotType}>Trucks</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
