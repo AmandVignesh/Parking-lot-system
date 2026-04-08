@@ -3,11 +3,11 @@
   backdrop-filter: blur(10px);
   color: white;
   padding: 15px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   margin-bottom: 30px;
   position: sticky;
   top: 0;
   z-index: 50;
+  border: none;
 }
 
 .container {
@@ -15,8 +15,9 @@
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center horizontally */
   align-items: center;
+  gap: 150px; /* Space between logo and links */
 }
 
 .logoContainer {
