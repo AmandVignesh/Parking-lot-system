@@ -1,6 +1,6 @@
-// Parked Vehicles page - View and exit vehicles
+// Parked Vehicles page - View all currently parked vehicles
 import React, { useState, useEffect } from 'react';
-import { getParkedVehicles, exitVehicle } from '../services/api';
+import { getParkedVehicles } from '../services/api';
 import Alert from '../components/Alert.jsx';
 import styles from './ParkedVehicles.module.css';
 
@@ -9,10 +9,12 @@ const ParkedVehicles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [alert, setAlert] = useState(null);
-  const [exitingVehicleId, setExitingVehicleId] = useState(null);
 
   useEffect(() => {
     fetchParkedVehicles();
+    // Auto-refresh every 5 seconds
+    const interval = setInterval(fetchParkedVehicles, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchParkedVehicles = async () => {
@@ -28,31 +30,6 @@ const ParkedVehicles = () => {
       console.error('Error:', err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleExitVehicle = async (ticketId) => {
-    try {
-      setExitingVehicleId(ticketId);
-      const response = await exitVehicle(ticketId, null);
-
-      if (response.data.success) {
-        setAlert({
-          type: 'success',
-          message: `Vehicle exited successfully! Fee: ₹${response.data.data.fee}`
-        });
-        // Refresh the list
-        fetchParkedVehicles();
-      } else {
-        setAlert({ type: 'error', message: response.data.message });
-      }
-    } catch (error) {
-      setAlert({
-        type: 'error',
-        message: error.response?.data?.message || 'Failed to exit vehicle'
-      });
-    } finally {
-      setExitingVehicleId(null);
     }
   };
 
@@ -156,20 +133,6 @@ const ParkedVehicles = () => {
                     <span className={styles.value}>{calculateDuration(vehicle.entryTime)}h</span>
                   </div>
                 </div>
-
-                <button
-                  onClick={() => handleExitVehicle(vehicle.ticketId)}
-                  disabled={exitingVehicleId === vehicle.ticketId}
-                  className={styles.exitBtn}
-                >
-                  {exitingVehicleId === vehicle.ticketId ? (
-                    <>
-                      <span className="spinner"></span> Processing...
-                    </>
-                  ) : (
-                    '🚪 Exit Now'
-                  )}
-                </button>
               </div>
             ))}
           </div>

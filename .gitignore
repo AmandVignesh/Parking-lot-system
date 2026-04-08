@@ -4,6 +4,8 @@ backend/package-lock.json
 backend/.env
 backend/.env.local
 backend/.env.*.local
+backend/*.db
+backend/parking_lot.db
 
 # Frontend
 frontend/node_modules/
