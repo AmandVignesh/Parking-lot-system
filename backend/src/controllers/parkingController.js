@@ -22,8 +22,11 @@ const parkVehicleController = async (req, res) => {
   try {
     const { vehicleNumber, vehicleType } = req.body;
     
+    // Convert vehicle number to uppercase
+    const normalizedVehicleNumber = vehicleNumber.toUpperCase();
+    
     // Validate inputs
-    if (!validateVehicleNumber(vehicleNumber)) {
+    if (!validateVehicleNumber(normalizedVehicleNumber)) {
       return res.status(400).json({
         success: false,
         message: 'Invalid vehicle number'
@@ -48,7 +51,7 @@ const parkVehicleController = async (req, res) => {
     }
     
     // Park the vehicle
-    const parkingRecord = await parkVehicle(vehicleNumber, vehicleType, availableSlot);
+    const parkingRecord = await parkVehicle(normalizedVehicleNumber, vehicleType, availableSlot);
     
     res.status(200).json({
       success: true,
@@ -56,7 +59,7 @@ const parkVehicleController = async (req, res) => {
       data: {
         ticketId: parkingRecord.ticketId,
         slotNumber: parkingRecord.slotNumber,
-        vehicleNumber: vehicleNumber,
+        vehicleNumber: normalizedVehicleNumber,
         vehicleType: vehicleType,
         entryTime: parkingRecord.entryTime
       }
@@ -80,13 +83,16 @@ const exitVehicleController = async (req, res) => {
   try {
     const { ticketId, vehicleNumber } = req.body;
     
+    // Convert vehicle number to uppercase if provided
+    const normalizedVehicleNumber = vehicleNumber ? vehicleNumber.toUpperCase() : null;
+    
     // Get parking record
     let parkingRecord;
     
     if (ticketId) {
       parkingRecord = await getParkingByTicketId(ticketId);
-    } else if (vehicleNumber) {
-      parkingRecord = await getParkingByVehicleNumber(vehicleNumber);
+    } else if (normalizedVehicleNumber) {
+      parkingRecord = await getParkingByVehicleNumber(normalizedVehicleNumber);
     } else {
       return res.status(400).json({
         success: false,
