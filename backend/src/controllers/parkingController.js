@@ -151,6 +151,29 @@ const exitVehicleController = async (req, res) => {
 };
 
 /**
+ * Get available slots - GET /slots
+ */
+const getAvailableSlotsController = async (req, res) => {
+  try {
+    const slotsData = await getAvailableSlotsCount();
+    
+    res.status(200).json({
+      success: true,
+      message: 'Available slots retrieved',
+      data: slotsData
+    });
+    
+  } catch (error) {
+    console.error('Error retrieving slots:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving available slots',
+      error: error.message
+    });
+  }
+};
+
+/**
  * Get all parked vehicles - GET /parked-vehicles
  */
 const getAllParkedVehiclesController = async (req, res) => {
