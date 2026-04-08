@@ -16,7 +16,8 @@
   padding: 0 40px;
   display: flex;
   justify-content: space-between; /* Logo on left, Items on right */
-  align-items: center; /* Center items vertically */
+  align-items: center; 
+  padding-top: 20px;/* Center items vertically */
 }
 
 .logoContainer {
