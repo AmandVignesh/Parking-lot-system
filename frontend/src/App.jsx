@@ -1,10 +1,10 @@
 // Main App component
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import Dashboard from './pages/Dashboard';
-import ParkVehicle from './pages/ParkVehicle';
-import ExitVehicle from './pages/ExitVehicle';
+import Navigation from './components/Navigation.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import ParkVehicle from './pages/ParkVehicle.jsx';
+import ExitVehicle from './pages/ExitVehicle.jsx';
 import './styles/global.css';
 
 function App() {

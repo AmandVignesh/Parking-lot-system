@@ -1,7 +1,7 @@
 // Dashboard page showing available slots
 import React, { useState, useEffect } from 'react';
 import { getAvailableSlots } from '../services/api';
-import Alert from '../components/Alert';
+import Alert from '../components/Alert.jsx';
 import styles from './Dashboard.module.css';
 
 const Dashboard = () => {

@@ -1,7 +1,7 @@
 // Park Vehicle page
 import React, { useState } from 'react';
 import { parkVehicle } from '../services/api';
-import Alert from '../components/Alert';
+import Alert from '../components/Alert.jsx';
 import styles from './ParkVehicle.module.css';
 
 const ParkVehicle = () => {

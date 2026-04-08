@@ -1,7 +1,7 @@
 // Exit Vehicle page
 import React, { useState } from 'react';
 import { exitVehicle } from '../services/api';
-import Alert from '../components/Alert';
+import Alert from '../components/Alert.jsx';
 import styles from './ExitVehicle.module.css';
 
 const ExitVehicle = () => {
