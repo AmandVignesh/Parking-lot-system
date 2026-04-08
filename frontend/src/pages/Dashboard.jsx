@@ -77,7 +77,7 @@ const Dashboard = () => {
                     </div>
                     <div className={styles.slotStat}>
                       <span className={styles.label}>Occupied</span>
-                      <span className={styles.occupied}>O</span>
+                      <span className={styles.occupied}>{data.occupied}</span>
                     </div>
                     <div className={styles.slotStat}>
                       <span className={styles.label}>Total</span>
