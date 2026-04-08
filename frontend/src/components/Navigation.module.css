@@ -16,8 +16,8 @@
   padding: 0 20px;
   display: flex;
   justify-content: center; /* Center horizontally */
-  align-items: center;
-  gap: 150px; /* Space between logo and links */
+  align-items: center; /* Center vertically */
+  gap: 80px; /* Space between logo and links */
 }
 
 .logoContainer {
@@ -49,7 +49,7 @@
 .navLinks {
   display: flex;
   list-style: none;
-  gap: 15px;
+  gap: 40px; /* Gap between menu items */
   margin: 0;
   padding: 0;
 }
