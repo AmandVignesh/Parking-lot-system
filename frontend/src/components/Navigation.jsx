@@ -18,9 +18,6 @@ const Navigation = () => {
             <Link to="/park">Park Vehicle</Link>
           </li>
           <li>
-            <Link to="/parked">Parked Vehicles</Link>
-          </li>
-          <li>
             <Link to="/exit">Exit Vehicle</Link>
           </li>
         </ul>
