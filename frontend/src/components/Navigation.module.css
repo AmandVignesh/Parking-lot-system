@@ -11,26 +11,26 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  gap: 80px; /* Space between logo and links */
+  justify-content: space-between; /* Logo on left, Items on right */
+  align-items: center; /* Center items vertically */
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
 }
 
 .logoIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
   border-radius: 8px;
 }
 
@@ -39,7 +39,7 @@
   font-size: 24px;
   font-weight: 800;
   letter-spacing: 0.5px;
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 .logoContainer h1 span {
@@ -49,33 +49,38 @@
 .navLinks {
   display: flex;
   list-style: none;
-  gap: 40px; /* Gap between menu items */
+  gap: 20px; /* Gap between menu items */
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .navLinks li {
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .navLinks a {
   color: #94a3b8;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all 0.3s ease;
-  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  padding: 10px 18px;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navLinks a:hover {
   color: #f1f5f9;
-  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .navLinks a.active {
   color: #38bdf8;
-  background-color: rgba(56, 189, 248, 0.1);
+  background-color: #1e293b; /* Darker blue block for active tab */
 }
 
 @media (max-width: 768px) {
