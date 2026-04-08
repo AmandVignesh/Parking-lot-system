@@ -149,6 +149,20 @@ const getAvailableSlotsCount = async () => {
   return result;
 };
 
+/**
+ * Get all currently parked vehicles
+ */
+const getAllParkedVehicles = async () => {
+  const sql = `
+    SELECT id, vehicle_number, vehicle_type, ticket_id, slot_number, entry_time
+    FROM parking_records 
+    WHERE status = 'parked'
+    ORDER BY entry_time DESC
+  `;
+  
+  return await db.all(sql, []);
+};
+
 module.exports = {
   initializeDatabase,
   parkVehicle,
@@ -156,5 +170,6 @@ module.exports = {
   getParkingByTicketId,
   getParkingByVehicleNumber,
   exitVehicle,
-  getAvailableSlotsCount
+  getAvailableSlotsCount,
+  getAllParkedVehicles
 };

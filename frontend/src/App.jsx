@@ -5,6 +5,7 @@ import Navigation from './components/Navigation.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import ParkVehicle from './pages/ParkVehicle.jsx';
 import ExitVehicle from './pages/ExitVehicle.jsx';
+import ParkedVehicles from './pages/ParkedVehicles.jsx';
 import './styles/global.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/park" element={<ParkVehicle />} />
         <Route path="/exit" element={<ExitVehicle />} />
+        <Route path="/parked" element={<ParkedVehicles />} />
       </Routes>
     </Router>
   );

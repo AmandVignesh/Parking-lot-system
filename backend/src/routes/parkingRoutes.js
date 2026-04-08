@@ -5,7 +5,8 @@ const router = express.Router();
 const {
   parkVehicleController,
   exitVehicleController,
-  getAvailableSlotsController
+  getAvailableSlotsController,
+  getAllParkedVehiclesController
 } = require('../controllers/parkingController');
 
 /**
@@ -27,5 +28,11 @@ router.post('/exit', exitVehicleController);
  * Get available slots for all vehicle types
  */
 router.get('/slots', getAvailableSlotsController);
+
+/**
+ * GET /parked-vehicles
+ * Get all currently parked vehicles
+ */
+router.get('/parked-vehicles', getAllParkedVehiclesController);
 
 module.exports = router;

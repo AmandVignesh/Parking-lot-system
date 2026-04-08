@@ -45,4 +45,12 @@ export const getAvailableSlots = () => {
   return apiClient.get('/slots');
 };
 
+/**
+ * Get all parked vehicles
+ * @returns {Promise} API response with list of parked vehicles
+ */
+export const getParkedVehicles = () => {
+  return apiClient.get('/parked-vehicles');
+};
+
 export default apiClient;

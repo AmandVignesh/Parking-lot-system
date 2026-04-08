@@ -5,7 +5,8 @@ const {
   getParkingByTicketId,
   getParkingByVehicleNumber,
   exitVehicle,
-  getAvailableSlotsCount
+  getAvailableSlotsCount,
+  getAllParkedVehicles
 } = require('../models/parkingModel');
 
 const {
@@ -150,23 +151,33 @@ const exitVehicleController = async (req, res) => {
 };
 
 /**
- * Get available slots - GET /slots
+ * Get all parked vehicles - GET /parked-vehicles
  */
-const getAvailableSlotsController = async (req, res) => {
+const getAllParkedVehiclesController = async (req, res) => {
   try {
-    const slotsData = await getAvailableSlotsCount();
+    const parkedVehicles = await getAllParkedVehicles();
+    
+    // Format the response
+    const formattedVehicles = parkedVehicles.map(vehicle => ({
+      id: vehicle.id,
+      ticketId: vehicle.ticket_id,
+      vehicleNumber: vehicle.vehicle_number,
+      vehicleType: vehicle.vehicle_type,
+      slotNumber: vehicle.slot_number,
+      entryTime: vehicle.entry_time
+    }));
     
     res.status(200).json({
       success: true,
-      message: 'Available slots retrieved',
-      data: slotsData
+      message: 'Parked vehicles retrieved',
+      data: formattedVehicles
     });
     
   } catch (error) {
-    console.error('Error retrieving slots:', error);
+    console.error('Error retrieving parked vehicles:', error);
     res.status(500).json({
       success: false,
-      message: 'Error retrieving available slots',
+      message: 'Error retrieving parked vehicles',
       error: error.message
     });
   }
@@ -175,5 +186,6 @@ const getAvailableSlotsController = async (req, res) => {
 module.exports = {
   parkVehicleController,
   exitVehicleController,
-  getAvailableSlotsController
+  getAvailableSlotsController,
+  getAllParkedVehiclesController
 };
